@@ -206,8 +206,17 @@ func SendEmail(email string, emailType int) bool {
 		// exeDir := path.Dir(exePath)
 		// // 拼接出根目录路径
 		// rootPath := path.Join(exeDir, "..")
+		// 获取当前文件的相对路径
+		relPath := "../templates"
 
-		temp, err := ParseTemplateDir("../templates")
+		// 将相对路径转换为绝对路径
+		absPath, err := filepath.Abs(relPath)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		temp, err := ParseTemplateDir(absPath)
 		if err != nil {
 			fmt.Println(err, "Could not parse template")
 			//log.Fatal("Could not parse template", err)
