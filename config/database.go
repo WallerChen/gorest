@@ -54,6 +54,8 @@ type REDIS struct {
 	Env      struct {
 		Host string
 		Port string
+		UserName string
+		Password string
 	}
 	Conn struct {
 		PoolSize int
