@@ -160,8 +160,18 @@ func InitRedis() (*radix.Client, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(RedisConnTTL)*time.Second)
 	defer cancel()
 
+	// poolConfig := radix.PoolConfig{
+	// 	Dialer: radix.Dialer{
+	// 		AuthPass: "此处填写你的密码",
+	// 	},
+	// }
+	
 	rClient, err := (radix.PoolConfig{
 		Size: configureRedis.Conn.PoolSize,
+		Dialer: radix.Dialer{
+			AuthUser: configureRedis.Env.Password,
+			AuthPass: configureRedis.Env.UserName,
+		},
 	}).New(ctx, "tcp", fmt.Sprintf("%v:%v",
 		configureRedis.Env.Host,
 		configureRedis.Env.Port))

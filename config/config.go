@@ -550,7 +550,7 @@ func server() (serverConfig ServerConfig, err error) {
 		return
 	}
 
-	serverConfig.ServerPort = strings.TrimSpace(os.Getenv("APP_PORT"))
+	serverConfig.ServerPort = strings.TrimSpace(os.Getenv("PORT"))
 	serverConfig.ServerEnv = strings.TrimSpace(os.Getenv("APP_ENV"))
 
 	return
