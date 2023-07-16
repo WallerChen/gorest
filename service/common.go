@@ -11,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"path"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mediocregopher/radix/v4"
