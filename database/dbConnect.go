@@ -169,13 +169,14 @@ func InitRedis() (*radix.Client, error) {
 	rClient, err := (radix.PoolConfig{
 		Size: configureRedis.Conn.PoolSize,
 		Dialer: radix.Dialer{
-			AuthUser: configureRedis.Env.Password,
-			AuthPass: configureRedis.Env.UserName,
+			AuthUser: configureRedis.Env.UserName,
+			AuthPass: configureRedis.Env.Password,
 		},
 	}).New(ctx, "tcp", fmt.Sprintf("%v:%v",
 		configureRedis.Env.Host,
 		configureRedis.Env.Port))
 	if err != nil {
+		log.WithError(err).Panic("panic code: 161")
 		log.WithError(err).Panic("panic code: 161")
 		return &rClient, err
 	}
