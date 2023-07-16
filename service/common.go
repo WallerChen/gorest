@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"path"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mediocregopher/radix/v4"
@@ -200,8 +201,14 @@ func SendEmail(email string, emailType int) bool {
 	} else {
 		fmt.Println("开发发邮件啦")
 		var body bytes.Buffer
+		 // 获取当前可执行文件的路径
+		 exePath, _ := os.Executable()
+		 // 获取该路径所在的目录路径
+		 exeDir := path.Dir(exePath)
+		 // 拼接出根目录路径
+		 rootPath := path.Join(exeDir, "..")
 
-		temp, err := ParseTemplateDir("/home/ec2-user/gorest/gorest/templates")
+		temp, err := ParseTemplateDir(rootPath+"/templates")
 		if err != nil {
 			fmt.Println(err, "Could not parse template")
 			//log.Fatal("Could not parse template", err)
