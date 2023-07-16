@@ -213,7 +213,6 @@ func SendEmail(email string, emailType int) bool {
 		absPath, err := filepath.Abs(relPath)
 		if err != nil {
 			fmt.Println(err)
-			return
 		}
 
 		temp, err := ParseTemplateDir(absPath)
